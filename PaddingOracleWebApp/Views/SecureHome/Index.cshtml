@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    string plainText = ViewBag.PlainText;
+    string encryptedHexString = ViewBag.EncryptedHexString;
+}
+
+<div class="jumbotron">
+    <h2>Padding Oracle</h2>
+    <p class="lead">Guess what? This has nothing to do with "Oracle" database :D</p>
+    @*<p>And by the way, <i>The Magic Words are Squeamish Ossifrage</i></p>*@
+</div>
+
+<div class="row">
+    <div class="col-xs-8">
+        <form role="form" class="form-inline" method="post" action="~/SecureHome/encrypt">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control" name="plainText" value="@plainText" />
+                <div class="input-group-btn">
+                    <button type="submit" class="btn">Encrypt</button>
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+        </form>
+    </div><!-- /.col-xs-12 -->
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-xs-8">
+        @if (!string.IsNullOrEmpty(encryptedHexString))
+        {<br />
+        <div class="form-group">
+            <h4>Cipher Text:</h4>
+            <textarea class="form-control" rows="2" id="comment">@encryptedHexString</textarea>
+        </div>
+
+        <p class="lead">
+            <a href="~/SecureHome/Decrypt?secret=@encryptedHexString">Click this link</a> to decrypt the cipher text
+        </p>
+
+        }
+    </div>
+</div>
